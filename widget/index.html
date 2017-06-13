@@ -1,21 +1,52 @@
 <!doctype html>
 <html>
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width"/>
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,initial-scale=1.0,width=device-width" />
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
-    <title>Hello APP</title>
+    <title>雇佣兵</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
-    <style type="text/css">
+    <link rel="stylesheet" type="text/css" href="./css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="./css/mzui.css" />
 
+    <style type="text/css">
+        footer [class^='icon-'],
+        [class*=' icon-'] {
+            font-size: 1.1rem;
+        }
+        footer [class~='icon-plus-sign']{
+          font-size: 1.8rem;
+        }
     </style>
 </head>
-<body>
 
+<body>
+    <footer class="aui-bar aui-bar-tab">
+        <div class="aui-bar-tab-item aui-active" tapmode>
+            <i class="icon icon-home"></i>
+            <div class="aui-bar-tab-label">主页</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <i class="icon icon-leaf"></i>
+            <div class="aui-bar-tab-label">发现</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <div class="icon icon-plus-sign"></div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <i class="icon icon-check-board"></i>
+            <div class="aui-bar-tab-label">购物车</div>
+        </div>
+        <div class="aui-bar-tab-item" tapmode>
+            <i class="icon icon-user"></i>
+            <div class="aui-bar-tab-label">我的</div>
+        </div>
+    </footer>
 </body>
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
-    apiready = function(){
-    };
+    apiready = function() {};
 </script>
+
 </html>
