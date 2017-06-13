@@ -14,25 +14,29 @@
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
     apiready = function() {
+        // api.setPrefs({
+        //     key: 'readWelcomeFrame',
+        //     value: false
+        // });
 
         //异步返回结果：
         api.getPrefs({
             key: 'readWelcomeFrame'
         }, function(ret, err) {
-            console.log("----异步数据-----" + JSON.stringify(ret))
+            // console.log("----异步数据-----" + JSON.stringify(ret))
             var readWelcomeFrame = ret.value;
-            console.log("----readWelcomeFrame-----" + readWelcomeFrame)
+            // console.log("----readWelcomeFrame-----" + readWelcomeFrame)
 
             if (readWelcomeFrame) {
-              console.log("非首次使用, 直接进入应用");
-              api.openWin({
-                  name: 'main',
-                  url: 'html/main.html',
-              });
+                console.log("非首次使用, 直接进入应用");
+                api.openWin({
+                    name: 'main',
+                    url: 'html/main.html',
+                });
 
             } else {
-              console.log("首次使用,进入引导页面");
-              fnoWpenWelcomeFrame();
+                console.log("首次使用,进入引导页面");
+                fnoWpenWelcomeFrame();
             }
 
         });
@@ -79,7 +83,7 @@
         }, function(ret, err) {
             var name = ret.name;
             var index = ret.index;
-            console.log("-------" + name + "-------" + index + "-------");
+            // console.log("-------" + name + "-------" + index + "-------");
 
         });
 
