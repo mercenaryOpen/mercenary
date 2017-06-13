@@ -7,46 +7,87 @@
     <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
     <title>雇佣兵</title>
     <link rel="stylesheet" type="text/css" href="./css/api.css" />
-    <link rel="stylesheet" type="text/css" href="./css/aui.css" />
-    <link rel="stylesheet" type="text/css" href="./css/mzui.css" />
 
-    <style type="text/css">
-        footer [class^='icon-'],
-        [class*=' icon-'] {
-            font-size: 1.1rem;
-        }
-        footer [class~='icon-plus-sign']{
-          font-size: 1.8rem;
-        }
-    </style>
 </head>
 
-<body>
-    <footer class="aui-bar aui-bar-tab">
-        <div class="aui-bar-tab-item aui-active" tapmode>
-            <i class="icon icon-home"></i>
-            <div class="aui-bar-tab-label">主页</div>
-        </div>
-        <div class="aui-bar-tab-item" tapmode>
-            <i class="icon icon-leaf"></i>
-            <div class="aui-bar-tab-label">发现</div>
-        </div>
-        <div class="aui-bar-tab-item" tapmode>
-            <div class="icon icon-plus-sign"></div>
-        </div>
-        <div class="aui-bar-tab-item" tapmode>
-            <i class="icon icon-check-board"></i>
-            <div class="aui-bar-tab-label">购物车</div>
-        </div>
-        <div class="aui-bar-tab-item" tapmode>
-            <i class="icon icon-user"></i>
-            <div class="aui-bar-tab-label">我的</div>
-        </div>
-    </footer>
-</body>
+
 <script type="text/javascript" src="./script/api.js"></script>
 <script type="text/javascript">
-    apiready = function() {};
+    apiready = function() {
+
+        //异步返回结果：
+        api.getPrefs({
+            key: 'readWelcomeFrame'
+        }, function(ret, err) {
+            console.log("----异步数据-----" + JSON.stringify(ret))
+            var readWelcomeFrame = ret.value;
+            console.log("----readWelcomeFrame-----" + readWelcomeFrame)
+
+            if (readWelcomeFrame) {
+              console.log("非首次使用, 直接进入应用");
+              api.openWin({
+                  name: 'main',
+                  url: 'html/main.html',
+              });
+
+            } else {
+              console.log("首次使用,进入引导页面");
+              fnoWpenWelcomeFrame();
+            }
+
+        });
+
+    };
+
+    function fnoWpenWelcomeFrame() {
+        api.openFrameGroup({
+            name: 'welcome_frame_group',
+            background: '#fff',
+            scrollEnabled: true,
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                h: 'auto'
+            },
+            index: 0,
+            frames: [{
+                name: 'welcome_frame_1',
+                url: 'widget://html/welcome/welcome_frame_1.html',
+                bgColor: '#fff',
+                bounces: false,
+                bgColor: 'widget://image/welcome/1.png',
+            }, {
+                name: 'welcome_frame_2',
+                url: 'widget://html/welcome/welcome_frame_2.html',
+                bgColor: '#fff',
+                bounces: false,
+                bgColor: 'widget://image/welcome/2.png',
+            }, {
+                name: 'welcome_frame_3',
+                url: 'widget://html/welcome/welcome_frame_3.html',
+                bgColor: '#fff',
+                bounces: false,
+                bgColor: 'widget://image/welcome/3.png',
+            }, {
+                name: 'welcome_frame_4',
+                url: 'widget://html/welcome/welcome_frame_4.html',
+                bgColor: '#fff',
+                bounces: false,
+                bgColor: 'widget://image/welcome/4.png',
+            }]
+        }, function(ret, err) {
+            var name = ret.name;
+            var index = ret.index;
+            console.log("-------" + name + "-------" + index + "-------");
+
+        });
+
+        api.setPrefs({
+            key: 'readWelcomeFrame',
+            value: true,
+        });
+    };
 </script>
 
 </html>
