@@ -27,7 +27,7 @@
 
     </header>
     <footer class="aui-bar aui-bar-tab">
-        <div class="aui-bar-tab-item aui-active" tapmode onclick="fnSwitchFrame(0)" ;>
+        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(0)" ;>
             <i class=" icon icon-home "></i>
             <div class="aui-bar-tab-label ">主页</div>
         </div>
@@ -35,14 +35,14 @@
             <i class="icon icon-leaf"></i>
             <div class="aui-bar-tab-label">发现</div>
         </div>
-        <div class="aui-bar-tab-item" tapmode onclick="openMytab()" ;>
+        <div class="aui-bar-tab-item" tapmode onclick="openMNActionButton()" ;>
             <div class=" icon icon-plus-sign "></div>
         </div>
-        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(3)" ;>
+        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(2)" ;>
             <i class="icon icon-check-board"></i>
-            <div class="aui-bar-tab-label">购物车</div>
+            <div class="aui-bar-tab-label">订单</div>
         </div>
-        <div class="aui-bar-tab-item" tapmode onclick="fnSwitchFrame(4)" ;>
+        <div class="aui-bar-tab-item" tapmode onclick="fnSwitchFrame(3)" ;>
             <i class=" icon icon-user "></i>
             <div class="aui-bar-tab-label ">我的</div>
         </div>
@@ -50,14 +50,10 @@
 </body>
 <script type="text/javascript " src="../script/api.js "></script>
 <script type="text/javascript ">
-    var frames = ['huodong', 'groupbuy_frame', 'find_frame', 'my_frame'];
+    var frames = ['home', 'find', 'order', 'user'];
     var headers;
     var footerButtons;
     var headerHeight, footerHeight;
-
-    function openMytab() {
-        openMNActionButton();
-    };
 
     function openMNActionButton() {
         var MNActionButton = api.require('MNActionButton');
@@ -118,8 +114,8 @@
         arcMenu.open({
             type: 'arc',
             mainMenu: {
-                x: api.frameWidth / 2,
-                y: api.frameHeight / 2,
+                x: api.frameWidth * 0.45,
+                y: api.frameHeight - 25,
                 w: 50,
                 h: 50,
                 img: 'widget://res/arcMenu/square.png',
@@ -159,9 +155,7 @@
         });
     };
 
-
     apiready = function() {
-
         var header = $api.dom('header');
         var footer = $api.dom('footer');
 
@@ -171,8 +165,8 @@
         footerHeight = $api.offset(footer).h;
 
         //将页脚的4个按钮选出来
-        headers = $api.domAll(header, '.header-item');
-        footerButtons = $api.domAll(footer, 'div');
+        // headers = $api.domAll(header, '.header-item');
+        footerButtons = $api.domAll(footer, '.aui-bar-tab-item');
 
         fnSwitchFrame(0);
 
@@ -181,18 +175,20 @@
     //在4个FRAME之间切换
     function fnSwitchFrame(index) {
         for (var i = 0; i < frames.length; i++) {
+            // 由于中间的下单不在Frame组中 增加 移除样式时需要考虑此问题
+            var j = i > 1 ? i + 1 : i;
             //当frame是选中的frame时
             if (index == i) {
-                var topDistance = index == 3 ? 0 : headerHeight;
-                var frameHeight = api.frameHeight - topDistance - footerHeight;
-
+                // var topDistance = index == 3 ? 0 : headerHeight;
+                // var frameHeight = api.frameHeight - topDistance - footerHeight;
+                var frameHeight = api.frameHeight - headerHeight - footerHeight;
                 api.openFrame({
                     name: frames[i],
                     url: frames[i] + '/main.html',
                     bounces: false,
                     rect: {
                         x: 0,
-                        y: topDistance,
+                        y: headerHeight,
                         w: 'auto',
                         h: frameHeight
                     }
@@ -200,16 +196,15 @@
 
                 //为选中的按钮加选中样式
                 // $api.addCls(headers[i], 'header-item-act');
-                $api.addCls(footerButtons[i], 'aui-active');
+                $api.addCls(footerButtons[j], 'aui-active');
             } else {
                 api.setFrameAttr({
                     name: frames[i],
                     hidden: true
                 });
-
                 //将未选中的按钮们去掉选中样式
                 // $api.removeCls(headers[i], 'header-item-act');
-                $api.removeCls(footerButtons[i], 'aui-active');
+                $api.removeCls(footerButtons[j], 'aui-active');
             }
         }
     };

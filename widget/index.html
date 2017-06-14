@@ -28,14 +28,14 @@
             // console.log("----readWelcomeFrame-----" + readWelcomeFrame)
 
             if (readWelcomeFrame) {
-                console.log("非首次使用, 直接进入应用");
+                // console.log("非首次使用, 直接进入应用");
                 api.openWin({
                     name: 'main',
                     url: 'html/main.html',
                 });
 
             } else {
-                console.log("首次使用,进入引导页面");
+                // console.log("首次使用,进入引导页面");
                 fnoWpenWelcomeFrame();
             }
 
