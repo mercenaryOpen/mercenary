@@ -35,7 +35,7 @@
             <i class="icon icon-leaf"></i>
             <div class="aui-bar-tab-label">发现</div>
         </div>
-        <div class="aui-bar-tab-item" tapmode onclick="openMNActionButton()" ;>
+        <div class="aui-bar-tab-item" tapmode onclick="openMytab()" ;>
             <div class=" icon icon-plus-sign "></div>
         </div>
         <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(3)" ;>
@@ -55,62 +55,111 @@
     var footerButtons;
     var headerHeight, footerHeight;
 
-    function openMNActionButton(){
-      var MNActionButton = api.require('MNActionButton');
-      MNActionButton.open({
-          layout: {
-              row: 1,
-              col: 4,
-              rowSpacing: 5,
-              colSpacing: 10,
-              offset: 0
-          },
-          animation: true,
-          autoHide: true,
-          styles: {
-              maskBg: 'rgba(0,0,0,0.2)',
-              bg: '#fff',
-              cancelButton: {
-                  size: 44,
-                  bg: '#fff',
-                  icon: 'widget://res/action-button-cancel.png'
-              },
-              item: {
-                  titleColor: '#888',
-                  titleHighlight: 'dd2727',
-                  titleSize: 12
-              },
-              indicator: {
-                  color: '#c4c4c4',
-                  highlight: '#9e9e9e'
-              }
-          },
-          items: [{
-              icon: 'widget://res/MNActionButton/0.png',
-              highlight: 'widget://res/MNActionButton/0.png',
-              title: '菜单项1'
-          }, {
-              icon: 'widget://res/MNActionButton/1.png',
-              highlight: 'widget://res/MNActionButton/1.png',
-              title: '菜单项2'
-          }, {
-              icon: 'widget://res/MNActionButton/2.png',
-              highlight: 'widget://res/MNActionButton/2.png',
-              title: '菜单项3'
-          }, {
-              icon: 'widget://res/MNActionButton/3.png',
-              highlight: 'widget://res/MNActionButton/3.png',
-              title: '菜单项4'
-          }]
-      }, function(ret) {
-          if (ret) {
-              alert(JSON.stringify(ret));
-          }
-      });
+    function openMytab() {
+        openArcMenu();
+    };
+
+    function openMNActionButton() {
+        var MNActionButton = api.require('MNActionButton');
+        MNActionButton.open({
+            layout: {
+                row: 1,
+                col: 4,
+                rowSpacing: 5,
+                colSpacing: 10,
+                offset: 0
+            },
+            animation: true,
+            autoHide: true,
+            styles: {
+                maskBg: 'rgba(0,0,0,0.2)',
+                bg: '#fff',
+                cancelButton: {
+                    size: 44,
+                    bg: '#fff',
+                    icon: 'widget://res/action-button-cancel.png'
+                },
+                item: {
+                    titleColor: '#888',
+                    titleHighlight: 'dd2727',
+                    titleSize: 12
+                },
+                indicator: {
+                    color: '#c4c4c4',
+                    highlight: '#9e9e9e'
+                }
+            },
+            items: [{
+                icon: 'widget://res/MNActionButton/0.png',
+                highlight: 'widget://res/MNActionButton/0.png',
+                title: '菜单项1'
+            }, {
+                icon: 'widget://res/MNActionButton/1.png',
+                highlight: 'widget://res/MNActionButton/1.png',
+                title: '菜单项2'
+            }, {
+                icon: 'widget://res/MNActionButton/2.png',
+                highlight: 'widget://res/MNActionButton/2.png',
+                title: '菜单项3'
+            }, {
+                icon: 'widget://res/MNActionButton/3.png',
+                highlight: 'widget://res/MNActionButton/3.png',
+                title: '菜单项4'
+            }]
+        }, function(ret) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            }
+        });
     }
 
-    apiready = function() {
+    function openArcMenu() {
+        var arcMenu = api.require('arcMenu');
+        arcMenu.open({
+            type: 'arc',
+            mainMenu: {
+                x: api.frameWidth / 2,
+                y: api.frameHeight / 2,
+                w: 50,
+                h: 50,
+                img: 'widget://res/arcMenu/square.png',
+                imgLight: 'widget://res/arcMenu/square.png'
+            },
+            items: [{
+                w: 40,
+                h: 40,
+                img: 'widget://res/arcMenu/0.png',
+                imgLight: 'widget://res/arcMenu/0.png'
+            }, {
+                w: 40,
+                h: 40,
+                img: 'widget://res/arcMenu/1.png',
+                imgLight: 'widget://res/arcMenu/1.png'
+            }, {
+                w: 40,
+                h: 40,
+                img: 'widget://res/arcMenu/2.png',
+                imgLight: 'widget://res/arcMenu/2.png'
+            }, {
+                w: 40,
+                h: 40,
+                img: 'widget://res/arcMenu/3.png',
+                imgLight: 'widget://res/arcMenu/3.png'
+            }],
+            startAngle: -90,
+            wholeAngle: 180,
+            radius: 100,
+            fixedOn: api.frameName
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    };
 
+    apiready = function() {
 
         var header = $api.dom('header');
         var footer = $api.dom('footer');
