@@ -27,22 +27,22 @@
 
     </header>
     <footer class="aui-bar aui-bar-tab">
-        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(0)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(0)" ;>
             <i class=" icon icon-home "></i>
             <div class="aui-bar-tab-label ">主页</div>
         </div>
-        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(1)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(1)" ;>
             <i class="icon icon-leaf"></i>
             <div class="aui-bar-tab-label">发现</div>
         </div>
         <div class="aui-bar-tab-item" tapmode onclick="openMNActionButton()" ;>
             <div class=" icon icon-plus-sign "></div>
         </div>
-        <div class="aui-bar-tab-item " tapmode onclick="fnSwitchFrame(2)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(2)" ;>
             <i class="icon icon-check-board"></i>
             <div class="aui-bar-tab-label">订单</div>
         </div>
-        <div class="aui-bar-tab-item" tapmode onclick="fnSwitchFrame(3)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(3)" ;>
             <i class=" icon icon-user "></i>
             <div class="aui-bar-tab-label ">我的</div>
         </div>
@@ -166,7 +166,7 @@
 
         //将页脚的4个按钮选出来
         // headers = $api.domAll(header, '.header-item');
-        footerButtons = $api.domAll(footer, '.aui-bar-tab-item');
+        footerButtons = $api.domAll(footer, '.aui-bar-frame');
 
         fnSwitchFrame(0);
 
@@ -175,8 +175,6 @@
     //在4个FRAME之间切换
     function fnSwitchFrame(index) {
         for (var i = 0; i < frames.length; i++) {
-            // 由于中间的下单不在Frame组中 增加 移除样式时需要考虑此问题
-            var j = i > 1 ? i + 1 : i;
             //当frame是选中的frame时
             if (index == i) {
                 // var topDistance = index == 3 ? 0 : headerHeight;
@@ -196,7 +194,7 @@
 
                 //为选中的按钮加选中样式
                 // $api.addCls(headers[i], 'header-item-act');
-                $api.addCls(footerButtons[j], 'aui-active');
+                $api.addCls(footerButtons[i], 'aui-active');
             } else {
                 api.setFrameAttr({
                     name: frames[i],
@@ -204,7 +202,7 @@
                 });
                 //将未选中的按钮们去掉选中样式
                 // $api.removeCls(headers[i], 'header-item-act');
-                $api.removeCls(footerButtons[j], 'aui-active');
+                $api.removeCls(footerButtons[i], 'aui-active');
             }
         }
     };
