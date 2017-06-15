@@ -1,23 +1,74 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-      <title>title</title>
-      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
-      <style>
-          body{
+<html>
 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+
+    <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
+    <style>
+        body {}
+
+        header {
+            /*height: 3.5rem;*/
+        }
+
+        header .adress a:nth-child(2) {
+            margin-left: -0.8rem;
+        }
+
+        header .nav-right {
+            height: 2rem;
+            margin-left: 2rem;
+            width: 10rem;
+        }
+
+        header .nav-right .header-search-input {
+            height: 1rem;
+            background-color: white;
+            margin-top: 0.5rem;
+        }
+
+        .heading .nav-right form .icon-search {
+            top: .1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="heading color-important-pale">
+        <nav class="nav adress">
+            <a class="active">阳光学院</a>
+            <a><i class="icon icon-chevron-down"></i></a>
+        </nav>
+        <div class="nav-right pull-right">
+            <form topmod onclick="fnOpenSearchWin()">
+                <div class="control has-icon-right  header-search-input">
+                    <input type="search" placeholder="东区西瓜" id="search-input">
+                    <i class="icon icon-search"></i>
+                </div>
+            </form>
+        </div>
+    </header>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function() {
+
+
+    };
+
+    function fnOpenSearchWin(){
+      api.openWin({
+          name: 'find_search_win',
+          url: 'search_win.html',
+          pageParam: {
+              name: 'test'
           }
-      </style>
-  </head>
-  <body>
-11111
-  </body>
-  <script type="text/javascript" src="../../script/api.js"></script>
-  <script type="text/javascript">
-      apiready = function(){
+      });
+    };
+</script>
 
-      };
-  </script>
-  </html>
+</html>

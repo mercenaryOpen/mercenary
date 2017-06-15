@@ -155,23 +155,6 @@
         });
     };
 
-    apiready = function() {
-        var header = $api.dom('header');
-        var footer = $api.dom('footer');
-
-        $api.fixStatusBar(header);
-
-        headerHeight = $api.offset(header).h;
-        footerHeight = $api.offset(footer).h;
-
-        //将页脚的4个按钮选出来
-        // headers = $api.domAll(header, '.header-item');
-        footerButtons = $api.domAll(footer, '.aui-bar-frame');
-
-        fnSwitchFrame(0);
-
-    };
-
     //在4个FRAME之间切换
     function fnSwitchFrame(index) {
         for (var i = 0; i < frames.length; i++) {
@@ -202,10 +185,30 @@
                 });
                 //将未选中的按钮们去掉选中样式
                 // $api.removeCls(headers[i], 'header-item-act');
-                $api.removeCls(footerButtons[i], 'aui-active');
+                if ($api.hasCls(footerButtons[i], 'aui-active')) {
+                    $api.removeCls(footerButtons[i], 'aui-active');
+                };
             }
         }
     };
+
+    apiready = function() {
+        var header = $api.dom('header');
+        var footer = $api.dom('footer');
+
+        $api.fixStatusBar(header);
+
+        headerHeight = $api.offset(header).h;
+        footerHeight = $api.offset(footer).h;
+
+        //将页脚的4个按钮选出来
+        // headers = $api.domAll(header, '.header-item');
+        footerButtons = $api.domAll(footer, '.aui-bar-frame');
+
+        fnSwitchFrame(1);
+    };
+
+
 </script>
 
 </html>
