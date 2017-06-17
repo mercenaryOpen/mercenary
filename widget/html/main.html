@@ -27,22 +27,22 @@
 
     </header>
     <footer class="aui-bar aui-bar-tab">
-        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(0)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchRootFrame(0)" ;>
             <i class=" icon icon-home "></i>
             <div class="aui-bar-tab-label ">主页</div>
         </div>
-        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(1)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchRootFrame(1)" ;>
             <i class="icon icon-leaf"></i>
             <div class="aui-bar-tab-label">发现</div>
         </div>
         <div class="aui-bar-tab-item" tapmode onclick="openMNActionButton()" ;>
             <div class=" icon icon-plus-sign "></div>
         </div>
-        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(2)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchRootFrame(2)" ;>
             <i class="icon icon-check-board"></i>
             <div class="aui-bar-tab-label">订单</div>
         </div>
-        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchFrame(3)" ;>
+        <div class="aui-bar-tab-item aui-bar-frame" tapmode onclick="fnSwitchRootFrame(3)" ;>
             <i class=" icon icon-user "></i>
             <div class="aui-bar-tab-label ">我的</div>
         </div>
@@ -67,7 +67,7 @@
         // headers = $api.domAll(header, '.header-item');
         footerButtons = $api.domAll(footer, '.aui-bar-frame');
 
-        fnSwitchFrame(1);
+        fnSwitchRootFrame(1);
     };
 
 
@@ -172,7 +172,7 @@
     };
 
     //在4个FRAME之间切换
-    function fnSwitchFrame(index) {
+    function fnSwitchRootFrame(index) {
         for (var i = 0; i < frames.length; i++) {
             //当frame是选中的frame时
             if (index == i) {
@@ -188,7 +188,7 @@
                         y: headerHeight,
                         w: 'auto',
                         h: frameHeight
-                    }
+                    },
                 });
 
                 //为选中的按钮加选中样式
