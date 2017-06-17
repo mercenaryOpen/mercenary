@@ -54,6 +54,22 @@
     var headers;
     var footerButtons;
     var headerHeight, footerHeight;
+    apiready = function() {
+        var header = $api.dom('header');
+        var footer = $api.dom('footer');
+
+        $api.fixStatusBar(header);
+
+        headerHeight = $api.offset(header).h;
+        footerHeight = $api.offset(footer).h;
+
+        //将页脚的4个按钮选出来
+        // headers = $api.domAll(header, '.header-item');
+        footerButtons = $api.domAll(footer, '.aui-bar-frame');
+
+        fnSwitchFrame(1);
+    };
+
 
     function openMNActionButton() {
         var MNActionButton = api.require('MNActionButton');
@@ -190,22 +206,6 @@
                 };
             }
         }
-    };
-
-    apiready = function() {
-        var header = $api.dom('header');
-        var footer = $api.dom('footer');
-
-        $api.fixStatusBar(header);
-
-        headerHeight = $api.offset(header).h;
-        footerHeight = $api.offset(footer).h;
-
-        //将页脚的4个按钮选出来
-        // headers = $api.domAll(header, '.header-item');
-        footerButtons = $api.domAll(footer, '.aui-bar-frame');
-
-        fnSwitchFrame(1);
     };
 
 

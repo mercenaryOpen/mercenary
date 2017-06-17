@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+      <title>title</title>
+      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+      <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
+      <link rel="stylesheet" type="text/css" href="../../css/mian_content.css" />
+
+      <style>
+          body{
+
+          }
+          #maincontent{
+            margin: 0;
+          }
+      </style>
+  </head>
+  <body>
+    <div id="maincontent">
+        <div class="home-tuan-list" v-for="site in 10">
+            <div href="" class="item Fix hightitem">
+                <div class="cnt">
+                    <img class="pic" src="../../image/find/hns.jpg">
+                    <div class="wrap">
+                        <div class="wrap2">
+                            <div class="content">
+                                <div class="shopname">汉拿山烤肉</div><span class="distance">8.9km</span>
+                                <div class="title">代金劵 不限时段通用，免费wifi，可累计使用，全场通用</div>
+                                <div class="price-info">
+                                    <span class="symbol">¥</span>
+                                    <span class="price">0.0</span>
+                                    <del class="o-price">¥299.0</del>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="../../script/api.js"></script>
+  <script type="text/javascript" src="../../script/vue.min.js"></script>
+  <script type="text/javascript">
+      apiready = function(){
+        var maincontent = new Vue({
+            el: '#maincontent'
+        });
+
+      };
+
+  </script>
+  </html>

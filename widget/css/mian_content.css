@@ -1,0 +1,196 @@
+/*定位+搜索栏 start*/
+#search-header {
+    margin-top: -1.5rem;
+    height: 2.5rem;
+}
+
+.search-header-citylist {
+    float: left;
+    height: 2.5rem;
+    line-height: 2.5rem;
+    color: rgb(255, 132, 0);
+    font-size: 0.9rem;
+    margin-left: 0.75rem;
+}
+
+.search-header-citylist>img {
+    height: 15px;
+    vertical-align: top;
+    padding-top: 0.65rem;
+}
+
+.search-header-search {
+    position: absolute;
+    bottom: 0.4rem;
+    left: 7rem;
+    right: 0.75rem;
+    height: 1.7rem;
+    line-height: 1.7rem;
+    background-color: rgb(232, 232, 232);
+    border-radius: 1.7rem;
+    color: rgb(153, 153, 153);
+    font-size: 0.7rem;
+}
+
+.search-header-search>img {
+    height: 1rem;
+    padding-top: 0.5rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    vertical-align: top;
+}
+
+.hightitem {
+    background-color: #fff;
+}
+/*定位+搜索栏 end*/
+
+
+/*主内容样式 start*/
+#maincontent{
+  margin-top: 2rem;
+}
+
+.home-tuan-list .item {
+    position: relative;
+    display: block;
+    padding-left: 10px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.home-tuan-list .cnt {
+    padding: 7px 10px 10px 0;
+    display: box;
+    display: -webkit-box;
+    min-height: 78px;
+    background-size: auto 1px;
+}
+
+.home-tuan-list .pic {
+    margin-right: 10px;
+    background: center;
+}
+
+.home-tuan-list img {
+    width: 90px;
+    height: 66px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    border-radius: 3px;
+}
+
+.home-tuan-list .wrap {
+    -webkit-box-flex: 1;
+}
+
+.home-tuan-list .wrap2 {
+    display: table;
+    height: 88px;
+    width: 100%;
+}
+
+.home-tuan-list .content {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.home-tuan-list .shopname {
+    color: #333;
+    line-height: 16px;
+    font-size: 17px;
+    max-width: 11em;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    min-height: 10px;
+    padding-bottom: 2px;
+    padding-top: 3px;
+    display: inline-block;
+}
+
+.home-tuan-list .title {
+    color: #666;
+    line-height: 16px;
+    font-size: 13px;
+    max-height: 30px;
+    overflow: hidden;
+    padding-top: 3px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.home-tuan-list .hot-title {
+    margin-bottom: 8px;
+}
+
+.home-tuan-list .hot-subtitle {
+    margin-bottom: 9px;
+}
+
+.home-tuan-list .price-info {
+    margin-top: 9px;
+    /*margin-bottom: 11px;*/
+    color: #666;
+    font-size: 12px;
+    position: relative;
+    line-height: 15px;
+    display: box;
+    display: -webkit-box;
+    height: 15px;
+}
+
+.home-tuan-list .symbol {
+    font-size: 14px;
+    color: #f60;
+    display: block;
+    margin-top: 1px;
+}
+
+.home-tuan-list .price {
+    color: #f60;
+    font-size: 20px;
+    line-height: 15px;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+
+.home-tuan-list .o-price {
+    color: #999;
+    margin-top: 5px;
+    line-height: 10px;
+}
+
+.home-tuan-list .sale {
+    color: #f63;
+    border: solid 1px #ff916e;
+    padding: 3px 2px 2px;
+    font-size: 10px;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    margin-left: 5px;
+    line-height: 10px;
+    height: 10px;
+}
+
+.home-tuan-list .distance {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    -ms-box-flex: 1;
+    -ms-flex: 1;
+    text-align: right;
+    line-height: 10px;
+    margin-top: 5px;
+    color: #999;
+    float: right;
+    font-size: 12px;
+}
+
+.home-tuan-list .price, .index-rec .home-tuan-list .o-price, .index-rec .home-tuan-list .distance, .index-rec .home-tuan-list .sale {
+    display: block;
+    line-height: 15px;
+    font-size: 12px;
+}
