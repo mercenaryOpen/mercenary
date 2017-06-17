@@ -7,13 +7,10 @@
     <title>title</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="../../css/mian_content.css" /> -->
+    <link rel="stylesheet" type="text/css" href="../../css/mian_content.css" />
 
     <style>
-        #search-header {
-            /*margin-top: -3rem;*/
-        }
-
+        /*  使用html实现发现页头部和 切换页 注释
         .search-header-search {
             position: absolute;
             bottom: 0.4rem;
@@ -34,13 +31,13 @@
 
         .search-header-search .seach-content {
             margin: 0 auto;
-        }
+        }*/
     </style>
 </head>
 
 <body>
     <header>
-        <!-- <div class="header-item" id="search-header">
+        <div class="header-item" id="search-header">
             <div class="search-header-citylist">
                 <span class="currentCity">阳光学院</span>
                 <img src="../../image/header/arrow_down_groupbuy.png">
@@ -48,8 +45,8 @@
             <div class="search-header-search" topmod onclick="fnOpenSearchWin()">
                 <img src="../../image/header/search_groupbuy.png"> 东区西瓜
             </div>
-        </div> -->
-        <div class="heading find-seach-title">
+        </div>
+        <!-- <div class="heading find-seach-title">
             <div class="title">
                 <strong>阳光学院</strong>
                 <i class="icon icon-chevron-down"></i>
@@ -64,7 +61,7 @@
             <a topmod onclick="fnSwitchFindFrameGroup(1)">顺风</a>
             <a topmod onclick="fnSwitchFindFrameGroup(2)">替身</a>
             <a topmod onclick="fnSwitchFindFrameGroup(3)">技能</a>
-        </nav>
+        </nav> -->
 
     </header>
 
@@ -75,7 +72,7 @@
     var framesGroup = [];
     var header = $api.dom('header');
     headerHeight = $api.offset(header).h;
-    // var NVNavigationBarrHeight = 42;
+    var NVNavigationBarrHeight = 42;
     var frames = ['immediate', 'tailwind', 'substitute', 'skill'];
     for (var i = 0; i < frames.length; i++) {
         framesGroup.push({
@@ -88,84 +85,123 @@
 
         $api.fixStatusBar(header);
 
-        // fnOpenNVNavigationBar();
+        fnOpenNavigationBar();
 
         fnOpenFindMainFrameGroup();
 
     };
 
     // 四大类目 使用NVNavigationBar模块
-    function fnOpenNVNavigationBar() {
-        var NVNavigationBar = api.require('NVNavigationBar');
-        NVNavigationBar.open({
-            // 摆放位置
-            rect: {
-                //模块左上角的x坐标, 默认：0
-                x: 0,
-                //模块左上角的y坐标, 默认：0
-                y: headerHeight + 20,
-                //模块的宽度 默认当前frame或windown的宽度
-                w: api.frameWidth,
-                //模块的高度 默认当前frame或windown的高度
-                h: NVNavigationBarrHeight,
+    // function fnOpenNVNavigationBar() {
+    //     var NVNavigationBar = api.require('NVNavigationBar');
+    //     NVNavigationBar.open({
+    //         // 摆放位置
+    //         rect: {
+    //             //模块左上角的x坐标, 默认：0
+    //             x: 0,
+    //             //模块左上角的y坐标, 默认：0
+    //             y: headerHeight + 20,
+    //             //模块的宽度 默认当前frame或windown的宽度
+    //             w: api.frameWidth,
+    //             //模块的高度 默认当前frame或windown的高度
+    //             h: NVNavigationBarrHeight,
+    //         },
+    //         // 模块样式配置
+    //         styles: {
+    //             // 导航条方向 可选 vertical(垂直)、horizontal(水平)  默认 horizontal
+    //             orientation: 'horizontal',
+    //             // 导航条背景   支持 rgb、rgba、#、img；默认：#6b6b6b
+    //             bg: '#F2F2F2',
+    //             // 背景透明的配置，取值范围：0-1；默认：1
+    //             bgAlpha: 1,
+    //             // 字体配置
+    //             font: {
+    //                 // 导航项字体大小；默认：14
+    //                 size: 14,
+    //                 // 选中时导航项字体大小；默认：14
+    //                 sizeSelected: 18,
+    //                 // 导航条字体颜色，支持rgb、rgba、#；默认：#FFFFFF
+    //                 color: '#FFFFFF',
+    //                 // 选中时导航条字体颜色，支持rgb、rgba、#；默认：#FFFFFF
+    //                 colorSelected: '#ff0000',
+    //                 // 背景透明度，取值范围：0-1；默认：1
+    //                 alpha: 1,
+    //             },
+    //             // item大小配置
+    //             itemSize: {
+    //                 // 单个导航项的宽度；默认为导航条宽度/导航项个数
+    //                 // w: 90,
+    //                 // 单个导航项的高度；默认为导航条高度/导航项个数
+    //                 // h: 44
+    //             }
+    //         },
+    //         // 按钮项数据
+    //         items: [{
+    //             title: '即时',
+    //             bg: '#BF3EFF',
+    //             bgSelected: '#FFA500'
+    //         }, {
+    //             title: '顺风',
+    //             bg: '#BF3EFF',
+    //             bgSelected: '#FFA500'
+    //         }, {
+    //             title: '替身',
+    //             bg: '#BF3EFF',
+    //             bgSelected: '#FFA500'
+    //         }, {
+    //             title: '技能',
+    //             bg: '#BF3EFF',
+    //             bgSelected: '#FFA500'
+    //         }],
+    //         // 被选中的导航项的下标，不传表示不选中任何 item
+    //         selectedIndex: 0,
+    //         // 块视图添加到指定 frame 的名字   默认：模块依附于当前 window
+    //         fixedOn: api.frameName,
+    //         // 是否将模块视图固定到窗口上，不跟随窗口上下滚动    默认值：true
+    //         fixed: false,
+    //         // 导航条的id(字符串)
+    //         id: 'searchNVNavigationBar'
+    //     }, function(ret, err) {
+    //         console.log(JSON.stringify(ret));
+    //     });
+    // };
+
+    function fnOpenNavigationBar() {
+        var navigationBar = api.require('navigationBar');
+        navigationBar.open({
+            y: headerHeight+20,
+            w: api.frameWidth,
+            h: NVNavigationBarrHeight *1.3,
+            itemSize: {
+                // w: 150
             },
-            // 模块样式配置
-            styles: {
-                // 导航条方向 可选 vertical(垂直)、horizontal(水平)  默认 horizontal
-                orientation: 'horizontal',
-                // 导航条背景   支持 rgb、rgba、#、img；默认：#6b6b6b
-                bg: '#6b6b6b',
-                // 背景透明的配置，取值范围：0-1；默认：1
-                bgAlpha: 1,
-                // 字体配置
-                font: {
-                    // 导航项字体大小；默认：14
-                    size: 14,
-                    // 选中时导航项字体大小；默认：14
-                    sizeSelected: 18,
-                    // 导航条字体颜色，支持rgb、rgba、#；默认：#FFFFFF
-                    color: '#FFFFFF',
-                    // 选中时导航条字体颜色，支持rgb、rgba、#；默认：#FFFFFF
-                    colorSelected: '#ff0000',
-                    // 背景透明度，取值范围：0-1；默认：1
-                    alpha: 1,
-                },
-                // item大小配置
-                itemSize: {
-                    // 单个导航项的宽度；默认为导航条宽度/导航项个数
-                    // w: 90,
-                    // 单个导航项的高度；默认为导航条高度/导航项个数
-                    // h: 44
-                }
-            },
-            // 按钮项数据
             items: [{
-                title: '即时',
-                bg: '#BBFFFF',
-                bgSelected: '#ff00000'
+                title: '标题一',
+                bg: '#F8F8FF',
+                bgSelected: '#FF00FF'
             }, {
-                title: '顺风',
-                bg: '#BBFFFF',
-                bgSelected: '#FFA500'
+                title: '标题二',
+                bg: '#F8F8FF',
+                bgSelected: '#FF00FF'
             }, {
-                title: '替身',
-                bg: '#BBFFFF',
-                bgSelected: '#FFA500'
+                title: '标题三',
+                bg: '#F8F8FF',
+                bgSelected: '#FF00FF'
             }, {
-                title: '技能',
-                bg: '#BBFFFF',
-                bgSelected: '#FFA500'
+                title: '标题四',
+                bg: '#F8F8FF',
+                bgSelected: '#FF00FF'
             }],
-            // 被选中的导航项的下标，不传表示不选中任何 item
+            font: {
+                color: '#FFFFFF'
+            },
             selectedIndex: 0,
-            // 块视图添加到指定 frame 的名字   默认：模块依附于当前 window
-            fixedOn: api.frameName,
-            // 是否将模块视图固定到窗口上，不跟随窗口上下滚动    默认值：true
-            fixed: false,
-            // 导航条的id(字符串)
-            id: 'searchNVNavigationBar'
         }, function(ret, err) {
-            console.log(JSON.stringify(ret));
+            if (ret) {
+                // alert(JSON.stringify(ret));
+            } else {
+                // alert(JSON.stringify(err));
+            }
         });
     };
 
@@ -177,7 +213,7 @@
             scrollEnabled: false,
             rect: {
                 x: 0,
-                y: headerHeight+50,
+                y: headerHeight + NVNavigationBarrHeight + 40,
                 w: api.frameWidth,
                 h: api.frameHeight,
             },
