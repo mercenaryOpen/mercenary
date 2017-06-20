@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/grabSingle.css" />
+    <style>
+        body {}
+
+        header {}
+
+        .heading {
+            border-bottom: solid 1px #FFAEB9;
+        }
+    </style>
+</head>
+
+<body class="with-heading-bottom">
+    <header>
+        <div class="heading">
+            <nav class="nav" topmod onclick="fnCloseWin()">
+                <a><i class="icon icon-chevron-left"></i></a>
+            </nav>
+            <div class="title text-center"><strong>抢单</strong></div>
+        </div>
+    </header>
+
+    <div class="maincontent">
+        <div class="order-type mission-label">
+            <span>订单类型</span>
+            <span class="mission-vaule">即时 快递</span>
+        </div>
+
+        <div class="task-list mission-label">
+            <div><span>快递列表</span></div>
+            <span class="mission-vaule task-list-vaule text-center">共有两件快递 接单后信息可见</span>
+        </div>
+
+        <div class="address mission-label">
+            <div class="from">
+                <span class="text">去哪拿</span>
+                <span class="mission-vaule">快递列表</span>
+            </div>
+            <div class="to">
+                <span class="text">送&nbsp;&nbsp;&nbsp;&nbsp;到</span>
+                <span class="mission-vaule">快递列表</span>
+            </div>
+            <div class="employer">
+                <span class="text">收货人</span>
+                <span class="mission-vaule">快递列表</span>
+            </div>
+        </div>
+
+        <div class="mission-time mission-label">
+            <span class="text">送达时间</span>
+            <span class="vaule vaule-right">今天 12:10</span>
+        </div>
+
+        <div class="mission-reward mission-label">
+            <div class="commission">
+                <span class="text">佣金</span>
+                <span class="vaule vaule-right">1.00</span>
+            </div>
+            <div class="deposit">
+                <span class="text">押金</span>
+                <span class="vaule vaule-right">10.00</span>
+            </div>
+        </div>
+
+        <div class="control mission-label mission-protocol">
+            <div class="checkbox">
+                <input type="checkbox" name="buyMethod">
+                <label for="buyMethod"> </label>
+            </div>
+            <div>
+                <span>我已阅读并同意 <a topmod herf="javascript:void(0);" onclick="fnOpenTermsWin()"> 服务协议</a></span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer footer class="heading affix dock-bottom">
+        <button type="button" class="btn primary" style="width:100%">我要抢单</button>
+    </footer>
+
+</body>
+<script type=" text/javascript " src="../../script/api.js "></script>
+<script type="text/javascript " src="../../script/vue.min.js "></script>
+<script type="text/javascript">
+    apiready = function() {
+        var header = $api.dom('header');
+        $api.fixStatusBar(header);
+
+        var Vm = new Vue({
+            el: 'body',
+            data: {},
+            methods: {
+            },
+        });
+    };
+    function fnCloseWin() {
+        api.closeWin();
+    };
+
+    function fnOpenTermsWin() {
+        var url = "";
+        var name = "";
+        api.openWin({
+            name: 'terms',
+            url: '../terms.html',
+            pageParam: {
+                name: 'terms',
+                url: url,
+            }
+        });
+    };
+</script>
+<script type="text/javascript" src="../script/mer.js"></script>
+</html>

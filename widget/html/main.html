@@ -51,9 +51,20 @@
 <script type="text/javascript " src="../script/api.js "></script>
 <script type="text/javascript ">
     var frames = ['home', 'find', 'order', 'user'];
+    var framesGroup = [];
+    var openFrames = [false,false,false,false];
     var headers;
     var footerButtons;
     var headerHeight, footerHeight;
+
+    for (var i = 0; i < frames.length; i++) {
+        framesGroup.push({
+            name: frames[i],
+            url: frames[i] + '/main.html',
+            bgColor: '#fff'
+        })
+    };
+
     apiready = function() {
         var header = $api.dom('header');
         var footer = $api.dom('footer');
@@ -68,6 +79,7 @@
         footerButtons = $api.domAll(footer, '.aui-bar-frame');
 
         fnSwitchRootFrame(1);
+
     };
 
 
@@ -179,17 +191,24 @@
                 // var topDistance = index == 3 ? 0 : headerHeight;
                 // var frameHeight = api.frameHeight - topDistance - footerHeight;
                 var frameHeight = api.frameHeight - headerHeight - footerHeight;
-                api.openFrame({
-                    name: frames[i],
-                    url: frames[i] + '/main.html',
-                    bounces: false,
-                    rect: {
-                        x: 0,
-                        y: headerHeight,
-                        w: 'auto',
-                        h: frameHeight
-                    },
-                });
+
+                if(openFrames[index]) {
+                    api.bringFrameToFront({
+                        name: frames[i],
+                    });
+                } else {
+                    api.openFrame({
+                        name: frames[i],
+                        url: frames[i] + '/main.html',
+                        bounces: false,
+                        rect: {
+                            x: 0,
+                            y: headerHeight,
+                            w: 'auto',
+                            h: frameHeight
+                        },
+                    });
+                };
 
                 //为选中的按钮加选中样式
                 // $api.addCls(headers[i], 'header-item-act');
@@ -207,7 +226,6 @@
             }
         }
     };
-
 
 </script>
 

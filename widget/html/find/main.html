@@ -10,7 +10,7 @@
 
     <style>
         header {
-            margin-top: -1rem;
+            /*margin-top: -1rem;*/
         }
         /*  使用html实现发现页头部和 切换页 注释 */
 
@@ -40,8 +40,8 @@
             height: 2rem;
         }
 
-        .find-nav a.active{
-          background-color: #FF83FA;
+        .find-nav a.active {
+            background-color: #FF83FA;
         }
     </style>
 </head>
@@ -64,7 +64,6 @@
             <a topmod onclick="fnSwitchFindFrameGroup(2)">替身</a>
             <a topmod onclick="fnSwitchFindFrameGroup(3)">技能</a>
         </nav>
-
     </header>
 
 </body>
@@ -81,21 +80,20 @@
     for (var i = 0; i < frames.length; i++) {
         framesGroup.push({
             name: frames[i],
-            url: frames[i] + '.html',
+            url: frames[i] + '_list.html',
             bgColor: '#fff'
         })
     };
 
+
     apiready = function() {
         findNavGroup = $api.domAll(findNav, 'a');
-        $api.fixStatusBar(header);
-
+        // $api.fixStatusBar(header);
         fnOpenFindMainFrameGroup();
-        fnSwitchFindFrameGroup(1)
-
+        fnSwitchFindFrameGroup(1);
     };
 
-    // 打开发现主体内容页
+    // 切换发现主体内容页
     function fnOpenFindMainFrameGroup() {
         api.openFrameGroup({
             name: 'findFindFrameGroup',
@@ -105,9 +103,9 @@
                 x: 0,
                 y: headerHeight + 20,
                 w: api.frameWidth,
-                h: api.frameHeight-headerHeight,
+                h: api.frameHeight - headerHeight,
             },
-            index: 0,
+            index: 1,
             frames: framesGroup,
         }, function(ret, err) {
             if (ret) {
@@ -118,13 +116,12 @@
         });
 
     };
-
+    // 打开发现主体内容页
     function fnSwitchFindFrameGroup(index) {
         for (var i = 0; i < frames.length; i++) {
             //当frame是选中的frame时
             if (index == i) {
                 $api.addCls(findNavGroup[i], 'active');
-            } else {
                 api.setFrameGroupIndex({
                     name: 'findFindFrameGroup',
                     index: index,
@@ -135,6 +132,7 @@
                         alert(JSON.stringify(err));
                     }
                 });
+            } else {
                 //将未选中的按钮们去掉选中样式
                 if ($api.hasCls(findNavGroup[i], 'active')) {
                     $api.removeCls(findNavGroup[i], 'active');
@@ -210,16 +208,6 @@
                 alert(JSON.stringify(ret));
             } else {
                 alert(JSON.stringify(err));
-            }
-        });
-    };
-
-    function fnOpenSearchWin_old() {
-        api.openWin({
-            name: 'find_search_win',
-            url: 'search_win.html',
-            pageParam: {
-                name: 'test'
             }
         });
     };
