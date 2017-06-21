@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
     <link rel="stylesheet" type="text/css" href="../../css/grabSingle.css" />
+    <script type=" text/javascript " src="../../script/mer.js "></script>
     <style>
         body {}
 
@@ -77,7 +78,8 @@
                 <label for="buyMethod"> </label>
             </div>
             <div>
-                <span>我已阅读并同意 <a topmod herf="javascript:void(0);" onclick="fnOpenTermsWin()"> 服务协议</a></span>
+                <!-- <span>我已阅读并同意 <a topmod herf="javascript:void(0);" onclick="fnOpenTermsWin()"> 服务协议</a></span> -->
+                <span>我已阅读并同意 <a topmod herf="javascript:void(0);" onclick="fnOpenDialogBoxWebView()"> 服务协议</a></span>
             </div>
         </div>
 
@@ -102,22 +104,7 @@
             },
         });
     };
-    function fnCloseWin() {
-        api.closeWin();
-    };
 
-    function fnOpenTermsWin() {
-        var url = "";
-        var name = "";
-        api.openWin({
-            name: 'terms',
-            url: '../terms.html',
-            pageParam: {
-                name: 'terms',
-                url: url,
-            }
-        });
-    };
 </script>
 <script type="text/javascript" src="../script/mer.js"></script>
 </html>
