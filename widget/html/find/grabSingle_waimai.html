@@ -17,6 +17,20 @@
         .heading {
             border-bottom: solid 1px #FFAEB9;
         }
+
+        .order-list {
+            height: 10rem;
+        }
+
+        .comfortH {
+            margin-bottom: 0.8rem;
+        }
+        .beizhu{
+          border-top: solid 1px #FFAEB9;
+          margin-top: 0.8rem;
+          margin-bottom: 0.8rem;
+          padding-top: 0.8rem;
+        }
     </style>
 </head>
 
@@ -33,17 +47,30 @@
     <div class="maincontent">
         <div class="order-type mission-label">
             <span>订单类型</span>
-            <span class="mission-vaule">即时 快递</span>
+            <span class="mission-vaule">即时 外卖</span>
         </div>
 
-        <div class="task-list mission-label">
-            <div><span>快递列表</span></div>
-            <span class="mission-vaule task-list-vaule text-center">共有两件快递 接单后信息可见</span>
+        <div class="order-list mission-label">
+            <div class="comfortH"><span>订单列表</span></div>
+            <div class="comfortH">
+                <span class="text-large">鱼香肉丝饭</span>
+                <span class="vaule vaule-right">x&nbsp;1</span>
+            </div>
+            <div class="comfortH">
+                <span class="text-large">黄焖鸡米饭</span>
+                <span class="vaule vaule-right">x&nbsp;1</span>
+            </div>
+            <div class="beizhu">
+                <span class="aui-ellipsis-2 ">多加辣，不加香菜、葱花; 急急急。多加辣，不加香菜、葱花; 急急急。
+                多加辣，不加香菜、葱花; 急急急。多加辣，不加香菜、葱花; 急急急。多加辣，不加香菜、葱花; 急急急。
+              多加辣，不加香菜、葱花; 急急急。</span>
+            </div>
+
         </div>
 
         <div class="address mission-label">
             <div class="from">
-                <span class="text">去哪拿</span>
+                <span class="text">去哪买</span>
                 <span class="mission-vaule">东区餐厅</span>
             </div>
             <div class="to">
@@ -85,8 +112,8 @@
 
     </div>
 
-    <footer footer class="heading affix dock-bottom">
-        <button type="button" class="btn primary grab-btn" style="width:100%">我要抢单</button>
+    <footer class="heading affix dock-bottom ">
+        <button type="button" class="btn primary grab-btn">我要抢单</button>
     </footer>
 
 </body>
@@ -100,11 +127,10 @@
         var Vm = new Vue({
             el: 'body',
             data: {},
-            methods: {
-            },
+            methods: {},
         });
     };
-
 </script>
 <script type="text/javascript" src="../script/mer.js"></script>
+
 </html>

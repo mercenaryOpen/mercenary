@@ -1,62 +1,84 @@
+.aui-ellipsis-2 {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    word-break: break-all;
+    white-space: normal !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
 
-        .mission-label {
-            margin-top: 0.6rem;
-            border-bottom: solid 1px #FFAEB9;
-            border-top: solid 1px #FFAEB9;
-            padding: 0.5rem 0rem 0.5rem 1rem;
-        }
+.text-large{
+  font-size: 0.8rem;
+}
 
-        .maincontent .order-type {
-            height: 2rem;
-        }
+.mission-label {
+    margin-top: 0.6rem;
+    border-bottom: solid 1px #FFAEB9;
+    border-top: solid 1px #FFAEB9;
+    padding: 0.5rem 0rem 0.5rem 1rem;
+}
 
-        .mission-vaule {
-            margin-left: 0.5rem;
-            font-size: 0.75rem;
-        }
+.maincontent .order-type {
+    height: 2rem;
+}
+.address .mission-vaule {
+    margin-left: 3rem;
+    font-size: 0.8rem;
+}
 
-        .maincontent .task-list {
-            height: 5rem;
-        }
+.mission-vaule {
+    margin-left: 0.5rem;
+    font-size: 0.75rem;
+}
 
-        .maincontent .task-list .task-list-vaule {
-            padding-top: 0.6rem;
-        }
+.maincontent .task-list {
+    height: 5rem;
+}
 
-        .maincontent .address {
-            height: 6.574rem;
-        }
+.maincontent .task-list .task-list-vaule {
+    padding-top: 0.6rem;
+}
 
-        .maincontent .address .vaule {}
+.maincontent .address {
+    height: 6.574rem;
+}
 
-        .maincontent .address div {
-            height: 2rem;
-            padding-top: 0.5rem;
-            padding-right: 1.5rem;
-        }
 
-        .maincontent .address div:not(last-child) {
-            border-bottom: solid 1px #FFAEB9;
-        }
+.maincontent .address div {
+    height: 2rem;
+    padding-top: 0.5rem;
+    padding-right: 1.5rem;
+}
 
-        .vaule-right {
-            float: right;
-            margin-right: 0.5rem;
-        }
+.maincontent .address div:not(last-child) {
+    border-bottom: solid 1px #FFAEB9;
+}
 
-        .mission-protocol {}
+.vaule-right {
+    float: right;
+    margin-right: 0.5rem;
+}
 
-        .mission-protocol div:first-child {
-            float: left;
-            height: 1rem;
-        }
+.mission-protocol {}
 
-        .mission-protocol div:last-child {
-            margin-top: 0.2rem;
-            margin-left: 1.5rem;
-        }
+.mission-protocol div:first-child {
+    float: left;
+    height: 1rem;
+}
 
-        .mission-protocol a {
-            text-decoration: underline;
-            color: red;
-        }
+.mission-protocol div:last-child {
+    margin-top: 0.2rem;
+    margin-left: 1.5rem;
+}
+
+.mission-protocol a {
+    text-decoration: underline;
+    color: red;
+}
+
+.grab-btn{
+  width: 100%;
+  height: 2rem;
+}

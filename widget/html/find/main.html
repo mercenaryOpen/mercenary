@@ -90,7 +90,7 @@
         findNavGroup = $api.domAll(findNav, 'a');
         // $api.fixStatusBar(header);
         fnOpenFindMainFrameGroup();
-        fnSwitchFindFrameGroup(1);
+        fnSwitchFindFrameGroup(0);
     };
 
     // 切换发现主体内容页
@@ -105,7 +105,7 @@
                 w: api.frameWidth,
                 h: api.frameHeight - headerHeight,
             },
-            index: 1,
+            index: 0,
             frames: framesGroup,
         }, function(ret, err) {
             if (ret) {

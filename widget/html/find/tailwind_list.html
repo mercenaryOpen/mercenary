@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
     <link rel="stylesheet" type="text/css" href="../../css/find_content.css" />
+    <script type="text/javascript" src="../../script/mer.js"></script>
 
     <style>
         .mer-mission {
@@ -19,7 +20,7 @@
 <body>
     <div id="maincontent">
         <div class="home-tuan-list" v-for="(item, key) in findItems">
-            <div class="mer-mission" topmod v-on:click="fnOpenGrabSingleWin()">
+            <div class="mer-mission" topmod v-on:click="fnOpenGrabSingleWin('kuaidi')">
                 <div class="mer-mission-top">
                     <div class="mer-mission-left">
                         <div class="avatar-lg circle mer-portrait">
@@ -31,7 +32,7 @@
                                     <p>{{item.username}}</p>
                                 </div>
                                 <div class="mer-mission-type">
-                                    <span class="label success">送餐</span>
+                                    <span class="label success">顺风</span>
                                 </div>
                             </div>
                             <div class="mer-mission-time">
@@ -53,7 +54,9 @@
                 <div class="mer-mission-bottom">
                     <div class="mer-mission-datetime">
                         <i class="icon icon-time"></i>
-                        <span>06月11日 16:25 </span>
+                        <span class="from">06月11日 16:25 </span>
+                        <span class="dao">到 </span>
+                        <span class="to">06月12日 10:00 </span>
                     </div>
                     <div class="mer-mission-addr">
                         <div class="addr-icon">
@@ -73,84 +76,10 @@
 <script type=" text/javascript " src="../../script/api.js "></script>
 <script type="text/javascript " src="../../script/vue.min.js "></script>
 <script type="text/javascript ">
-    var maincontent = new Vue({
-        el: '#maincontent',
-        created() {
-            this.findItems = [{
-                username: "qyqyqyqy"
-            }]
-        },
-        data: {
-            findItems: [],
-            pageSize: 10,
-            page: 1
-        },
-        methods: {
-            fnAjaxFind: function() {
-                var tempArray = [{
-                    username: "祁缘",
-                }, {
-                    username: "祁缘11",
-                }, {
-                    username: "祁缘1111",
-                }, {
-                    username: "祁缘111111",
-                }, {
-                    username: "祁缘11111111",
-                }, ];
-
-                for (var i = 0; i < tempArray.length; i++) {
-                    this.findItems.push(tempArray[i]);
-                }
-
-            },
-
-            fnOpenGrabSingleWin: function() {
-                var winName = 'grabSingle_' + 'kuaidi';
-                api.openWin({
-                    name: winName,
-                    url: winName + '.html',
-                    pageParam: {
-                        name: 'test'
-                    }
-                });
-            }
-        },
-
-    });
-
-
+    var maincontent = fnVueInitItems();
     apiready = function() {
-        // 下拉刷新
-        api.setRefreshHeaderInfo({
-            // 设置是否可见
-            visible: true,
-            // 上拉刷新时的图片地址
-            loadingImg: 'widget://image/loading_more.png',
-            // 背景颜色
-            bgColor: '#ccc',
-            // 文本颜色
-            textColor: '#fff',
-            // 下拉文字描述
-            textDown: '下拉刷新...',
-            textUp: '松开刷新...',
-            // 是否显示更新时间
-            showTime: true,
-        }, function(ret, err) {
-            //在这里从服务器加载数据，加载完成后调用api.refreshHeaderLoadDone()方法恢复组件到默认状态
-            maincontent.fnAjaxFind();
-            api.refreshHeaderLoadDone();
-        });
-
-        //上拉加载 (自己监听页面是否达到底部)
-        api.addEventListener({
-            name: 'scrolltobottom',
-            extra: {
-                threshold: 0 //设置距离底部多少距离时触发，默认值为0，数字类型
-            }
-        }, function(ret, err) {
-            maincontent.fnAjaxFind();
-        });
+      fnPullUpRoad(maincontent);
+      fnDropDownRefresh(maincontent);
     };
 </script>
 

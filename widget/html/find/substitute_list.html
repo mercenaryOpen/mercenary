@@ -8,28 +8,30 @@
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
     <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
     <link rel="stylesheet" type="text/css" href="../../css/find_content.css" />
+    <script type="text/javascript" src="../../script/mer.js"></script>
 
     <style>
-    .mer-mission {
-        padding-bottom: 0.5rem;
-    }
-    .aui-ellipsis-2 {
-    	display: -webkit-box;
-    	overflow: hidden;
-    	text-overflow: ellipsis;
-    	word-wrap: break-word;
-    	word-break: break-all;
-    	white-space: normal !important;
-    	-webkit-line-clamp: 2;
-    	-webkit-box-orient: vertical;
-    }
+        .mer-mission {
+            padding-bottom: 0.5rem;
+        }
+
+        .aui-ellipsis-2 {
+            display: -webkit-box;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: normal !important;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
     </style>
 </head>
 
 <body>
     <div id="maincontent">
         <div class="home-tuan-list" v-for="(item, key) in findItems">
-            <div class="mer-mission">
+            <div class="mer-mission" topmod v-on:click="fnOpenGrabSingleWin('substitute')">
                 <div class="mer-mission-top">
                     <div class="mer-mission-left">
                         <div class="avatar-lg circle mer-portrait">
@@ -81,46 +83,13 @@
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript" src="../../script/vue.min.js"></script>
-<script type="text/javascript" src="../../script/clamp.js"></script>
+
 <script type="text/javascript">
-    var maincontent = new Vue({
-        el: '#maincontent',
-        created() {
-            this.findItems = [{
-                username: "祁缘"
-            }, {
-                username: "祁缘11"
-            }, ]
-        },
-        data: {
-            findItems: [],
-            pageSize: 10,
-            page: 1
-        },
-        methods: {
-            fnAjaxFind: function() {
-                var tempArray = [{
-                    username: "祁缘",
-                }, {
-                    username: "祁缘11",
-                }, {
-                    username: "祁缘1111",
-                }, {
-                    username: "祁缘111111",
-                }, {
-                    username: "祁缘11111111",
-                }, ];
+    var maincontent = fnVueInitItems();
 
-                for (var i = 0; i < tempArray.length; i++) {
-                    this.findItems.push(tempArray[i]);
-                }
-
-            }
-        },
-
-    });
     apiready = function() {
-
+      fnPullUpRoad(maincontent);
+      fnDropDownRefresh(maincontent);
     };
 </script>
 

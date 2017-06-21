@@ -1,55 +1,85 @@
 <!DOCTYPE html>
-  <html>
-  <head>
-      <meta charset="utf-8">
-      <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
-      <title>title</title>
-      <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
-      <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
-      <link rel="stylesheet" type="text/css" href="../../css/mian_content.css" />
+<html>
 
-      <style>
-          body{
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/mzui.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/find_content.css" />
+    <script type="text/javascript" src="../../script/mer.js"></script>
 
-          }
-          #maincontent{
-            margin: 0;
-          }
-      </style>
-  </head>
-  <body>
+    <style>
+        .mer-mission {
+            height: 6.5rem;
+        }
+    </style>
+</head>
+
+<body>
     <div id="maincontent">
-        <div class="home-tuan-list" v-for="site in 10">
-            <div href="" class="item Fix hightitem">
-                <div class="cnt">
-                    <img class="pic" src="../../image/find/hns.jpg">
-                    <div class="wrap">
-                        <div class="wrap2">
-                            <div class="content">
-                                <div class="shopname">汉拿山烤肉</div><span class="distance">8.9km</span>
-                                <div class="title">代金劵 不限时段通用，免费wifi，可累计使用，全场通用</div>
-                                <div class="price-info">
-                                    <span class="symbol">¥</span>
-                                    <span class="price">0.0</span>
-                                    <del class="o-price">¥299.0</del>
+        <div class="home-tuan-list" v-for="(item, key) in findItems">
+            <div class="mer-mission" topmod v-on:click="fnOpenGrabSingleWin('waimai')">
+                <div class="mer-mission-top">
+                    <div class="mer-mission-left">
+                        <div class="avatar-lg circle mer-portrait">
+                            <img src="../../image/my/profile_default.png" alt="">
+                        </div>
+                        <div class="mer-avatar-right">
+                            <div class="mer-employer">
+                                <div class="mer-user-nickename">
+                                    <p>{{item.username}}</p>
+                                </div>
+                                <div class="mer-mission-type">
+                                    <span class="label success">快递</span>
                                 </div>
                             </div>
+                            <div class="mer-mission-time">
+                                {{key+1}}分钟前
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mer-mission-right">
+                        <div class="mer-mission-deposit">
+                            <span class="label success mer-icon">押</span>
+                            <span class="mer-money">999999.99</span>
+                        </div>
+                        <div class="mer-mission-commission">
+                            <span class="label success mer-icon">赏</span>
+                            <span class="mer-money">100.99</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mer-mission-bottom">
+                    <div class="mer-mission-datetime">
+                        <i class="icon icon-time"></i>
+                        <span>06月11日 16:25 </span>
+                    </div>
+                    <div class="mer-mission-addr">
+                        <div class="addr-icon">
+                            <i class="icon icon-venus"></i>
+                        </div>
+                        <div class="addr">
+                            <span class="from">东区餐厅二楼三#窗</span>
+                            <span class="dao">到 </span>
+                            <span class="to">西区10#110 </span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-  </body>
-  <script type="text/javascript" src="../../script/api.js"></script>
-  <script type="text/javascript" src="../../script/vue.min.js"></script>
-  <script type="text/javascript">
-      apiready = function(){
-        var maincontent = new Vue({
-            el: '#maincontent'
-        });
+</body>
+<script type=" text/javascript " src="../../script/api.js "></script>
+<script type="text/javascript " src="../../script/vue.min.js "></script>
+<script type="text/javascript ">
+    var maincontent = fnVueInitItems();
 
-      };
+    apiready = function() {
+      fnPullUpRoad(maincontent);
+      fnDropDownRefresh(maincontent);
+    };
+</script>
 
-  </script>
-  </html>
+</html>
