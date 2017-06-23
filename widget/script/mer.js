@@ -24,6 +24,14 @@ function fnCloseWin() {
     api.closeWin();
 }
 
+function fnOpenWin(url, name) {
+    api.openWin({
+        name: name,
+        url: url,
+
+    });
+}
+
 function fnOpenTermsWin() {
     var url = "";
     var name = "";
@@ -180,7 +188,6 @@ function fnPersonalCenter() {
     })
 };
 
-
 // 自带拍照  但是拍照 选图只能二选一
 function fnGetPicture() {
     api.confirm({
@@ -212,7 +219,7 @@ function fnGetPicture() {
     });
 }
 
-
+// Vue 数据加载 发现列表页
 function fnVueInitItems() {
     var maincontent = new Vue({
         el: '#maincontent',
@@ -297,3 +304,192 @@ function fnPullUpRoad(maincontent) {
         maincontent.fnAjaxFind();
     });
 }
+
+//使用内置定位   iphone6定位失败  文档表示ios正常 安卓部分机型无效，推测原因 ios权限问题
+function fnGetLocation() {
+    api.getLocation(function(ret, err) {
+        if (ret && ret.status) {
+            api.confirm({
+                title: '位置',
+                msg: JSON.stringify(ret),
+                buttons: ['取消'],
+            }, function(ret, err) {
+                alert(JSON.stringify(ret));
+            });
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+// 获取本机号码 只支持部分安卓手机
+function fnGetPhoneNumber() {
+    console.log("获取本机号码");
+    api.getPhoneNumber(function(ret, err) {
+        var phoneNumber = ret.value;
+        if (phoneNumber) {
+            api.toast({
+                msg: phoneNumber,
+                duration: 1000,
+                location: 'bottom'
+            });
+        }
+    });
+}
+
+// 拨打电话
+function fnCALL() {
+    api.call({
+        type: 'tel_prompt',
+        number: '18506081025'
+    });
+}
+
+// 发送短信
+function fnSMS() {
+    api.sms({
+        numbers: ['18206071025'],
+        text: '测试短信'
+    }, function(ret, err) {
+        if (ret && ret.status) {
+            console.log('成功');
+
+        } else {
+            //发送失败
+            console.log('失败');
+        }
+    });
+}
+
+// 自动关闭的对话框 默认2s关闭 并且显示在页面底部
+function fnToast(msg, duration = 2000, location = "middle") {
+    api.toast({
+        //消息内容
+        msg: msg,
+        // 显示时间
+        duration: duration,
+        // 位置 top  middle bottom;  默认中间
+        location: location,
+    });
+
+}
+
+// 手机号检测 会做是否填写 和 格式是否正确双重验证 建议服务端也做一遍手机号是否
+function fnCheckPhone(phone) {
+    // 手机号 是否填写检测
+    if (phone == '') {
+        fnToast('请输入手机号码');
+        return false;
+    }
+    // 手机号匹配检测
+    if (!(/^1[3|4|5|8]\d{9}$/.test(phone))) {
+        fnToast('手机号码有误');
+        return false;
+    }
+    return true;
+}
+
+
+// 密码检查
+
+// 验证密码检查 密码与重复密码
+function fnCheckPasswdReg() {
+    // 密码是否输入验证
+    if (password == '') {
+        fnToast('请输入登录密码');
+        return false;
+    }
+    // 密码长度是否合格验证
+    if (password.length < 6) {
+        fnToast('登录不能少于6位数');
+        return false;
+    }
+
+    // 重复密码是否输入验证
+    if (repassword == '') {
+        fnToast('请再次输入登录密码');
+        return false;
+    }
+
+    // 两次密码是否一致验证
+    if (password != repassword) {
+        fnToast('两次输入密码不一致');
+        return false;
+    }
+
+    return true;
+}
+
+// 打开时间选择器  安卓不能同时选择 日期和时间  在只选择时间时可以使用此模块
+function fnOpenPicker() {
+    api.openPicker({
+        type: 'date_time',
+        date: '',
+        title: '选择时间'
+    }, function(ret, err) {
+        if (ret) {
+            console.log(JSON.stringify(ret));
+        } else {
+            console.log(JSON.stringify(err));
+        }
+    });
+}
+
+
+// 地图相关类
+// 初始化百度地图
+function fnInitBMap() {
+    var bMap = api.require('bMap');
+    // 只有ios平台需要初始化
+    if (api.systemType == "ios") {
+        bMap.initMapSDK(function(ret, err) {});
+    }
+}
+
+
+// 使用百度地图获取当前位置
+function fnBMapGetLocation() {
+    var bMap = api.require('bMap');
+    fnInitBMap();
+    bMap.getLocation({
+        // 定位精度  10m   100m   1km   3km  默认 100m
+        accuracy: '100m',
+        // 获取到位置信息后是否自动停止定位    默认值：true
+        autoStop: true,
+        // 位置更新所需的最小距离（单位米），autoStop 为 true 时，此参数有效
+        filter: 1
+    }, function(ret, err) {
+        console.log(JSON.stringify(ret) + "  :状态");
+        // if (ret.status) {
+        //     // mybMapOpen(ret.lon, ret.lat);
+        //     // mybMapGetNameFromCoords(ret.lon, ret.lat);
+        //     myGetNameFromCoords(ret.lon, ret.lat);
+        // } else {
+        //     console.log(err.code);
+        // }
+    });
+}
+
+// 二维码扫描
+function fnOpenScanner() {
+    var FNScanner = api.require('FNScanner');
+    FNScanner.openScanner({
+        autorotation: true
+    }, function(ret, err) {
+        if (ret) {
+            alert(JSON.stringify(ret));
+        } else {
+            alert(JSON.stringify(err));
+        }
+    });
+}
+
+// 使用h5新特性支持 date_time
+// <div class="mission-label" id="datetimeMer">
+//     <div class="row">
+//         <span class="cell-3" style="width: 30%;float: left;">时间</span>
+//         <input style="width: 70%;float: right; border: solid 1px dodgerblue;"
+//         class="cell-9" name="date-time" type="datetime-local"
+//         value="2014-06-01 10:55" />
+//     </div>
+// </div>

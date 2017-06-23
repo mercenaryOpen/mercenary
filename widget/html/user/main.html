@@ -6,21 +6,220 @@
     <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
     <title>title</title>
     <link rel="stylesheet" type="text/css" href="../../css/api.css" />
+
     <script type=" text/javascript " src="../../script/mer.js "></script>
+
     <style>
-        body {}
+        html,
+        body {
+            height: 100%;
+            background-color: #f0f0f0;
+        }
+
+        .h10 {
+            height: 10px;
+            background: #f0f0f0;
+        }
+
+        .h1 {
+            height: 1px;
+            margin-left: 15px;
+            background: #f0f0f0;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+
+        .firstblock,
+        .secondblock,
+        .thirdblock {
+            background-color: #fff;
+        }
+
+        .login {
+            background-image: url(../../image/my/personal_bkg.jpg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            position: relative;
+        }
+
+        .loginbg {
+            width: 100%;
+        }
+
+        .login .personal_logo {
+            position: absolute;
+            top: 60px;
+            width: 64px;
+            height: 64px;
+            left: 20px;
+        }
+
+        .person_arrow {
+            position: absolute;
+            height: 20px;
+            right: 10px;
+            top: 90px;
+        }
+
+        .login .userinfo {
+            position: absolute;
+            top: 60px;
+            margin-left: 100px;
+        }
+
+        .login .userinfo .title {
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .login .userinfo .subtitle {
+            font-size: 14px;
+            color: #fff;
+            border: 1px solid #fff;
+            display: inline-block;
+            padding: 3px;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .item {
+            height: 50px;
+            line-height: 50px;
+            padding-left: 15px;
+            background-color: #fff;
+        }
+
+        .item_ico {
+            float: left;
+            width: 30px;
+            padding: 10px 10px 10px 0;
+        }
+
+        .item_arrow {
+            float: right;
+            width: 16px;
+            padding: 17px 15px 15px 0;
+        }
+
+        .item-hov {
+            background-color: #E8E8E8;
+        }
     </style>
 </head>
 
-<body>
 
+<body>
+    <div class="login" onclick="fnOpenWin('registered.html','registered')">
+        <img src="../../image/my/personal_bkg.jpg" class="loginbg">
+        <img id="userAvatar" src="../../image/my/profile_default.png" class="personal_logo">
+        <div class="userinfo">
+            <div id="userAccount" class="title">点击登录</div>
+            <div id="userRegion" class="subtitle">常居地：未设置</div>
+        </div>
+        <img src="../../image/my/personal_icon_arrow.png" class="person_arrow">
+    </div>
+    <div class="h10"></div>
+    <div class="firstblock">
+        <div class="item" topmod onclick="">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>打开聊天界面</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnGetLocation()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>定位</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnBMapGetLocation()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>使用bmap定位</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnGetPhoneNumber()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>获取本机号码</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnCALL()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>拨打电话</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnSMS()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>发送短信</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item" topmod onclick="fnOpenPicker()">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>自带的时间选择器</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="item">
+            <img src="../../image/my/my_order_user_icon_normal.png" alt="" class="item_ico">
+            <span>我的订单</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="h1"></div>
+        <div class="item">
+            <img src="../../image/my/my_coupon_user_icon_normal.png" class="item_ico">
+            <span>我的团购券</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="secondblock">
+        <div class="item">
+            <img src="../../image/my/my_favorite_user_icon_normal.png" class="item_ico">
+            <span>我的收藏</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="h1"></div>
+        <div class="item">
+            <img src="../../image/my/my_history_user_icon_normal.png" class="item_ico">
+            <span>最近浏览</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+        <div class="h1"></div>
+    </div>
+    <div class="h10"></div>
+    <div class="thirdblock">
+        <div class="h1"></div>
+        <div class="item">
+            <img src="../../image/my/my_setting_user_icon_normal.png" class="item_ico">
+            <span>设置</span>
+            <img src="../../image/arrow.png" class="item_arrow">
+        </div>
+    </div>
+    <div class="h10"></div>
+    <div class="h10"></div>
 </body>
 <script type="text/javascript" src="../../script/api.js"></script>
 <script type="text/javascript">
     apiready = function() {
-        fnPersonalCenter();
+        // myFNPhotograph();
 
     };
+
+    // 第三方模块实现拍照
+    function myFNPhotograph() {
+        var FNPhotograph = api.require('FNPhotograph');
+        FNPhotograph.open({
+            path: 'fs://mercenary',
+            album: true,
+            quality: 'medium'
+        }, function(ret) {
+            alert(JSON.stringify(ret));
+        });
+    }
 </script>
 
 </html>

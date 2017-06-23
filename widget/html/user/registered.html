@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css"/>
+    <script type=" text/javascript " src="../../script/mer.js "></script>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-danger">
+    <a class="aui-pull-left" tapmode onclick="fnCloseWin()">
+        <span class="aui-iconfont aui-icon-left"></span>
+    </a>
+    <div class="aui-title">注册</div>
+</header>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        var header = document.querySelector('header');
+        // $api.fixIos7Bar(header);
+        $api.fixStatusBar(header);
+        api.openFrame ({
+            name: 'member_registered_body',
+            url: './registered_body.html',
+            rect:{
+                x:0,
+                y: $api.dom('header').offsetHeight,
+                w: 'auto',
+                h: 'auto'
+            },
+            bounces:true
+        });
+    };
+</script>
+</body>
+</html>

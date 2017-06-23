@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+    <script type=" text/javascript " src="../../script/mer.js "></script>
+    <style>
+        .aui-input-row:first-child:after {
+            border-top: none
+        }
+
+        .aui-input-row {
+            width: 100%;
+        }
+
+        .aui-btn-default {
+            color: #ffffff;
+            background-color: #b9b9b9 !important;
+            border: 1px solid #bdc3c7;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="aui-content">
+            <div class="aui-form">
+                <div class="aui-input-row">
+                    <input type="number" class="aui-input" placeholder="请输入手机号" v-model="mobile" />
+                </div>
+                <div class="aui-input-row">
+                    <div class="aui-col-xs-8 aui-pull-left">
+                        <input class="aui-input" type="number" v-model="code" placeholder="输入验证码" />
+                    </div>
+                    <div class="aui-col-xs-4 aui-pull-right" style="height: 41px;line-height: 37px;">
+                        <div class="aui-btn" tapmode v-on:click="send_message()" v-bind:class="{ 'aui-btn-danger': timer==0 }">
+                            <span v-if="timer == 0">点击获取</span>
+                            <span v-else>{{ timer }} s</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="aui-input-row">
+                    <input type="password" class="aui-input" placeholder="输入登录密码" v-model="password" />
+                </div>
+                <div class="aui-input-row">
+                    <input type="password" class="aui-input" placeholder="再次输入登录密码" v-model="repassword" />
+                </div>
+            </div>
+        </div>
+        <div class="aui-content-padded" v-if="is_ok">
+            <div class="aui-btn aui-btn-danger aui-btn-block aui-margin-t-10" tapmode @click="subform()">注册</div>
+        </div>
+        <div class="aui-content-padded" v-else>
+            <div class="aui-btn aui-btn-default aui-btn-block aui-margin-t-10">注册</div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="../../script/api.js"></script>
+    <script type="text/javascript" src="../../script/common.js"></script>
+    <script type="text/javascript" src="../../script/vue.js"></script>
+</body>
+
+</html>
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            mobile: '',
+            code: '',
+            password: '',
+            repassword: '',
+            reement: '',
+
+            timer: 0,
+            count: 40, //短信验证码发送间隔时间设置
+            is_ok: 0
+        },
+        methods: {
+            //发送短信验证码
+            send_message: function() {
+                // 手机号检测
+                if (!fnCheckPhone(vm.mobile)) {
+                    console.log("手机号检测未通过");
+                    return false;
+                }
+
+                // 检查倒计时是否结束
+                if (vm.timer > 0) {
+                    return false;
+                }
+
+                // 点击 发送验证码即开始计时  （这里要不要请求返回值会成功在开始倒计时？）
+                vm.timer = vm.count;
+                var temptime = setInterval(function() {
+                    if (vm.timer == 0) {
+                        clearInterval(temptime);
+                        return;
+                    } else {
+                        vm.timer -= 1;
+                    }
+                }, 1000);
+
+                api.ajax({
+                    url: sendsms_url,
+                    method: 'post',
+                    data: {
+                        values: {
+                            mobile: vm.mobile,
+                        },
+                    }
+                }, function(ret, err) {
+                    if (ret) {
+                        fnToast(JSON.stringify(ret));
+                    } else {
+                        fnToast(JSON.stringify(err));
+                    }
+                });
+            },
+
+            // 注册
+            subform: function() {
+                var mobile = vm.mobile;
+                var code = vm.code;
+                var password = vm.password;
+                var repassword = vm.repassword;
+                var reement = vm.reement;
+
+                // 手机号检测 会做是否填写 和 格式是否正确双重验证 建议服务端也做一遍手机号是否
+                if (!fnCheckPhone(vm.mobile)) {
+                    return false;
+                }
+
+                // 验证码是否输入
+                if (code == '') {
+                    fnToast('请输入验证码');
+                    return false;
+                }
+
+                // 密码验证
+                if (!fnCheckPasswdReg(password, repassword)) {
+                    return false;
+                }
+
+                api.ajax({
+                    url: register_url,
+                    method: 'post',
+                    timeout: 30,
+                    data: {
+                        values: {
+                            mobile: mobile,
+                            smscode: code,
+                            password: password,
+                            deviceid: api.deviceId
+                        }
+                    }
+                }, function(ret, err) {
+                    fnToast(JSON.stringify(ret));
+
+                    api.closeWin({
+                        name: 'member_login'
+                    });
+
+                    api.sendEvent({
+                        name: 'update_user_centor',
+                    });
+
+                    if (ret.status == 1) {
+                        $api.setStorage('token', ret.data.token);
+                        $api.setStorage('member_info', ret.data);
+                        setTimeout(function() {
+                            api.closeWin({
+                                name: 'member_registered'
+                            });
+                        }, 500)
+                    }
+                });
+            },
+        },
+        watch: {
+            repassword: {
+                handler: function(val, oldVal) {
+                    console.log(val);
+                    if (vm.mobile && vm.code && vm.password && vm.repassword) {
+                        vm.is_ok = 1;
+                    }
+                },
+                deep: true
+            }
+        }
+    });
+
+    apiready = function() {
+        // 尝试预填充手机号
+        api.getPhoneNumber(function(ret, err) {
+            vm.mobile = ret.value;
+        });
+    };
+</script>

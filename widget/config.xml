@@ -1,9 +1,9 @@
  <widget id="A6942889507210"  version="0.0.1">
     <name>mercenary</name>
     <description>
-        Example For APICloud.
+        Fuzhou Gulou District mercenaries Network Technology Co., Ltd.
     </description>
-    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+    <author email="developer@mercenary.com.com" href="http://www.mercenary.com.com">
         Developer
     </author>
     <content src="index.html" />
@@ -27,5 +27,12 @@
 	<permission name="fileSystem" />
 	<permission name="internet" />
 	<permission name="bootCompleted" />
-	<permission name="hardware" />
+	<permission name="hardware" />  <feature name="bMap">
+      <param name="android_api_key" value="y38r4q8BhA1PyymS9HRMUGa6syZtuD1I"/>
+      <param name="ios_api_key" value="TRvAuykvTEzzBX2VTNXDp54rc6Xw6Gfp"/>
+  </feature>
+
+  <feature name="rongCloud2">
+      <param name="appKey" value="x18ywvqfxjwmc"/>
+  </feature>
 </widget>
