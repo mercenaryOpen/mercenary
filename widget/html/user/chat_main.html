@@ -30,8 +30,109 @@
     apiready = function() {
         var header = $api.dom('header');
         $api.fixStatusBar(header);
+        UIChatBox = api.require('UIChatBox');
+        fnOpenUIChatBox();
 
-    };
+        function fnOpenUIChatBox() {
+            UIChatBox.open({
+                // 输入框的占位提示文本
+                placeholder: '输入发送内容',
+                // 输入框自动获得焦点
+                autoFocus: false,
+                // 输入框显示的最大行数（高度自适应）
+                maxRows: 4,
+                // 自定义表情文件夹
+                emotionPath: 'widget://image/chatBox/emotion',
+                // 聊天输入框模块可配置的文本
+                texts: {
+                  // 录音按钮文字内容
+                    recordBtn: {
+                      // 按钮常态的标题
+                        normalTitle: '按住 说话',
+                        // 按钮按下时的标题
+                        activeTitle: '松开 结束'
+                    },
+                },
+                // 模块各部分的样式集合
+                styles: {
+                    // 输入区域样式
+                    inputBar: {
+                        borderColor: '#d9d9d9',
+                        bgColor: '#f2f2f2'
+                    },
+                    // 输入框样式
+                    inputBox: {
+                        borderColor: '#B3B3B3',
+                        bgColor: '#FFFFFF'
+                    },
+                    // 表情按钮样式
+                    emotionBtn: {
+                        normalImg: 'widget://image/chatBox/chatBox_face1.png'
+                    },
+                    // 附加功能按钮样式，不传则不显示附加功能按钮
+                    extrasBtn: {
+                        normalImg: 'widget://image/chatBox/add1.png'
+                    },
+                    // 键盘按钮样式
+                    keyboardBtn: {
+                        normalImg: 'widget://image/chatBox/chatBox_key1.png'
+                    },
+
+                    // 输入框左侧按钮样式，不传则不显示左边的语音按钮
+                    speechBtn: {
+                        normalImg: 'widget://image/chatBox/cam1.png'
+                    },
+                    //“按住 录音”按钮的样式
+                    recordBtn: {
+                        normalBg: '#c4c4c4',
+                        activeBg: '#999999',
+                        color: '#000',
+                        size: 14
+                    },
+                    // 表情和附加功能面板的小圆点指示器样式，若不传则不显示该指示器
+                    indicator: {
+                        target: 'extrasPanel',
+                        color: '#c4c4c4',
+                        activeColor: '#9e9e9e'
+                    },
+
+                    // 发送按钮样式，本参数对 iOS 平台上的键盘内发送按钮无效
+                    sendBtn: {
+                        titleColor: '#4cc518',
+                        bg: '#999999',
+                        activeBg: '#46a91e',
+                        titleSize: 14
+                    }
+                },
+                // 点击附加功能按钮，打开的附加功能面板的按钮样式
+                extras: {
+                    // 文字大小
+                    titleSize: 10,
+                    // 文字颜色
+                    titleColor: '#a3a3a3',
+                    // 附加按钮的样式
+                    btns: [{
+                        // 标题
+                        title: '图片',
+                        // 未点击时背景图片
+                        normalImg: 'widget://image/chatBox/album1.png',
+                        // 已点击时背景图片
+                        activeImg: 'widget://image/chatBox/album2.png'
+                    }, {
+                        title: '拍照',
+                        normalImg: 'widget://image/chatBox/cam1.png',
+                        activeImg: 'widget://image/chatBox/cam2.png'
+                    }]
+                }
+            }, function(ret, err) {
+                if (ret) {
+                    alert(JSON.stringify(ret));
+                } else {
+                    alert(JSON.stringify(err));
+                }
+            });
+        }
+    }
 </script>
 
 </html>
